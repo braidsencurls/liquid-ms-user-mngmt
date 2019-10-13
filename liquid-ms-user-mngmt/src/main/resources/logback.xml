@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- LOCAL LOGGING  -->
+	<property name="PATH" value="C:/Users/kul_grace/Documents/logs/mpr"/>
+	
+	<!-- DEV LOGGING -->
+	<!-- property name="PATH" value="/opt/tomcat9/logs/videoxchange"/-->
+	
+	
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm} - %c [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+    
+    <appender name="LOGTOFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file></file>
+    	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${PATH}/mpr-%d{yyyyMMdd}.log</fileNamePattern>
+		</rollingPolicy>
+    </appender>
+    
+
+    <logger name="com.psi" level="trace"
+            additivity="false">
+        <appender-ref ref="LOGTOFILE" />
+    </logger>
+    <logger name="org.springframework.web" level="info"
+            additivity="false">
+        <appender-ref ref="LOGTOFILE" />
+    </logger>
+    <logger name="org.springframework.orm" level="info"
+            additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="org.springframework" level="trace"
+            additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
