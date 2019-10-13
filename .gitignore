@@ -1,0 +1,10 @@
+.metadata/
+.idea/
+.classpath
+.project
+.springBeans
+.iml
+.settings/
+/target/
+/bin/
+src/main/webapp/WEB-INF/lib/plugin-entities.jar
